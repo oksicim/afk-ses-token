@@ -89,6 +89,9 @@ async function tarayiciAc(profil, tarayici) {
       headless: false,
       viewport: null,
       args: ["--start-maximized"],
+      // Playwright varsayilan olarak --no-sandbox ekler; Chrome bunu
+      // "desteklenmeyen bayrak" uyari cubuguyla gosterir. Kum havuzu acik kalsin.
+      chromiumSandbox: true,
       ignoreDefaultArgs: ["--enable-automation"],
     });
     return { context, tarayiciAdi: tarayici.ad };
@@ -166,7 +169,10 @@ async function discordUygulamasiOlustur({ botAdi = "Ses AFK Token" } = {}) {
   console.log(`   Kullanılan tarayıcı: ${tarayiciAdi}`);
 
   try {
-    const page = await context.newPage();
+    // Kalici profilde Playwright acilista bir about:blank sekmesi olusturur.
+    // Yeni sekme acmak yerine onu kullan; yoksa about:blank onde takili kalir.
+    const page = context.pages()[0] || (await context.newPage());
+    await page.bringToFront().catch(() => {});
     await page.goto(PORTAL_URL, { waitUntil: "domcontentloaded", timeout: 60_000 });
     await portalHazirBekle(page);
 
