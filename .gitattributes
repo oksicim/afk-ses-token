@@ -1,0 +1,17 @@
+# Windows batch dosyalarını Git'in LF'ye çevirmesini engelle.
+*.bat -text
+*.cmd -text
+
+# Kaynak ve belge dosyalarında platformdan bağımsız satır sonları.
+*.js text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+.gitattributes text eol=lf
+.gitignore text eol=lf
+LICENSE text eol=lf
+
+# Görseller hiçbir zaman metin olarak işlenmemeli.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary

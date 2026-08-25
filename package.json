@@ -1,0 +1,27 @@
+{
+  "name": "tokenonline",
+  "version": "1.0.0",
+  "description": "Discord sunuculari icin token ve ses yonetim sistemi",
+  "main": "index.js",
+  "scripts": {
+    "setup": "node scripts/kurulum.js --local-mongo --auto-discord",
+    "check": "node scripts/sistem-kontrol.js",
+    "migrate": "node src/utils/migrate-encrypt-tokens.js",
+    "change-key": "node src/utils/change-encryption-key.js",
+    "start": "node index.js",
+    "backfill-hash": "node src/utils/backfill-token-hash.js"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "debug": "^4.4.3",
+    "discord.js": "^14.25.1",
+    "discord.js-selfbot-v13": "^3.7.1",
+    "mongoose": "^9.3.3",
+    "playwright-core": "^1.62.1"
+  }
+}

@@ -1,0 +1,14 @@
+node_modules/
+package-lock.json
+.env
+.env.*
+config.js
+config.js.backup-*
+config.js-*
+.local/
+*.log
+data/panel-demo-data.json
+logs/
+npm-debug.log*
+.DS_Store
+Thumbs.db
