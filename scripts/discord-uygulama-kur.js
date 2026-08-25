@@ -9,13 +9,9 @@ const GIRIS_BEKLEME_MS = 10 * 60 * 1000;
 function profilKlasoru(tarayici) {
   const localAppData =
     process.env.LOCALAPPDATA || path.join(os.homedir(), "AppData", "Local");
-  const appData = process.env.APPDATA || path.join(os.homedir(), "AppData", "Roaming");
 
   const profiller = {
-    chrome: path.join(localAppData, "Google", "Chrome", "User Data"),
     brave: path.join(localAppData, "BraveSoftware", "Brave-Browser", "User Data"),
-    opera: path.join(appData, "Opera Software", "Opera Stable"),
-    "opera-gx": path.join(appData, "Opera Software", "Opera GX Stable"),
   };
 
   return profiller[tarayici.kimlik];
@@ -27,16 +23,9 @@ function tarayiciBul() {
   const localAppData =
     process.env.LOCALAPPDATA || path.join(os.homedir(), "AppData", "Local");
 
+  // Otomasyon yalnizca Brave ile destekleniyor: Chrome, portal sayfasini
+  // otomasyona kullandirmadigi icin kapsam disinda tutuldu.
   const adaylar = [
-    {
-      ad: "Google Chrome",
-      kimlik: "chrome",
-      yollar: [
-        path.join(programFiles, "Google", "Chrome", "Application", "chrome.exe"),
-        path.join(programFilesX86, "Google", "Chrome", "Application", "chrome.exe"),
-        path.join(localAppData, "Google", "Chrome", "Application", "chrome.exe"),
-      ],
-    },
     {
       ad: "Brave",
       kimlik: "brave",
@@ -44,24 +33,6 @@ function tarayiciBul() {
         path.join(programFiles, "BraveSoftware", "Brave-Browser", "Application", "brave.exe"),
         path.join(programFilesX86, "BraveSoftware", "Brave-Browser", "Application", "brave.exe"),
         path.join(localAppData, "BraveSoftware", "Brave-Browser", "Application", "brave.exe"),
-      ],
-    },
-    {
-      ad: "Opera",
-      kimlik: "opera",
-      yollar: [
-        path.join(localAppData, "Programs", "Opera", "opera.exe"),
-        path.join(programFiles, "Opera", "opera.exe"),
-        path.join(programFilesX86, "Opera", "opera.exe"),
-      ],
-    },
-    {
-      ad: "Opera GX",
-      kimlik: "opera-gx",
-      yollar: [
-        path.join(localAppData, "Programs", "Opera GX", "opera.exe"),
-        path.join(programFiles, "Opera GX", "opera.exe"),
-        path.join(programFilesX86, "Opera GX", "opera.exe"),
       ],
     },
   ];
@@ -77,9 +48,7 @@ function tarayiciBul() {
     }
   }
 
-  throw new Error(
-    "Google Chrome, Brave veya Opera bulunamadı. KURULUM.bat dosyasını yeniden aç.",
-  );
+  throw new Error("Brave bulunamadı. KURULUM.bat dosyasını yeniden aç.");
 }
 
 async function tarayiciAc(profil, tarayici) {

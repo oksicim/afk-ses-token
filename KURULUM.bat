@@ -241,18 +241,8 @@ start "" "ms-windows-store://pdp/?ProductId=9NBLGGH4NNS1"
 exit /b 1
 
 :tarayici_kontrol
-if exist "%ProgramFiles%\Google\Chrome\Application\chrome.exe" (
-  echo       Google Chrome bulundu.
-  exit /b 0
-)
-if exist "%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe" (
-  echo       Google Chrome bulundu.
-  exit /b 0
-)
-if exist "%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe" (
-  echo       Google Chrome bulundu.
-  exit /b 0
-)
+rem Otomasyon yalnizca Brave ile calisiyor. Chrome, portal sayfasini
+rem otomasyona kullandirmadigi icin kapsam disinda tutuldu.
 if exist "%ProgramFiles%\BraveSoftware\Brave-Browser\Application\brave.exe" (
   echo       Brave bulundu.
   exit /b 0
@@ -265,39 +255,25 @@ if exist "%LOCALAPPDATA%\BraveSoftware\Brave-Browser\Application\brave.exe" (
   echo       Brave bulundu.
   exit /b 0
 )
-if exist "%LOCALAPPDATA%\Programs\Opera\opera.exe" (
-  echo       Opera bulundu.
-  exit /b 0
-)
-if exist "%ProgramFiles%\Opera\opera.exe" (
-  echo       Opera bulundu.
-  exit /b 0
-)
-if exist "%ProgramFiles(x86)%\Opera\opera.exe" (
-  echo       Opera bulundu.
-  exit /b 0
-)
-if exist "%LOCALAPPDATA%\Programs\Opera GX\opera.exe" (
-  echo       Opera GX bulundu.
-  exit /b 0
-)
-if exist "%ProgramFiles%\Opera GX\opera.exe" (
-  echo       Opera GX bulundu.
-  exit /b 0
-)
-if exist "%ProgramFiles(x86)%\Opera GX\opera.exe" (
-  echo       Opera GX bulundu.
-  exit /b 0
-)
-echo       Chrome, Brave veya Opera bulunamadi. Google Chrome yuklenecek...
+echo       Brave bulunamadi. Brave yuklenecek...
 call :winget_kontrol
 if errorlevel 1 exit /b 1
-winget install --id Google.Chrome --exact --accept-source-agreements --accept-package-agreements
+
+winget install --id Brave.Brave --exact --accept-source-agreements --accept-package-agreements
 if errorlevel 1 (
-  echo [HATA] Google Chrome yuklenemedi.
+  echo [HATA] Brave yuklenemedi.
   exit /b 1
 )
-echo       Google Chrome kuruldu.
+
+if exist "%ProgramFiles%\BraveSoftware\Brave-Browser\Application\brave.exe" goto :brave_kuruldu
+if exist "%ProgramFiles(x86)%\BraveSoftware\Brave-Browser\Application\brave.exe" goto :brave_kuruldu
+if exist "%LOCALAPPDATA%\BraveSoftware\Brave-Browser\Application\brave.exe" goto :brave_kuruldu
+echo [HATA] Brave kuruldu fakat brave.exe bulunamadi.
+echo Bilgisayari yeniden baslatip KURULUM.bat dosyasini tekrar ac.
+exit /b 1
+
+:brave_kuruldu
+echo       Brave kuruldu.
 exit /b 0
 
 :hata

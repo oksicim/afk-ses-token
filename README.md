@@ -27,7 +27,7 @@ Node.js, npm paketleri, Discord uygulaması, bot, intentler, `config.js` ve Mong
 
 | Kurulumda olan | Senin yapacağın |
 | --- | --- |
-| Güvenli Chrome, Brave veya Opera penceresi açılır | Discord'a giriş yapmamışsan giriş yap |
+| Güvenli Brave penceresi açılır | Discord'a giriş yapmamışsan giriş yap |
 | Oturum zaten açıksa | Hiçbir şey; kurulum otomatik devam eder |
 | Captcha veya 2FA çıkarsa | Açık tarayıcıda tamamla |
 | Bot oluşturulunca | Token otomatik olarak `config.js` içine yazılır |
@@ -116,7 +116,7 @@ GitHub sayfasının üst tarafındaki yeşil **Code** butonuna bas, ardından **
 
 ### 4. Discord girişini tamamla
 
-Kurulum bilgisayardaki Google Chrome, Brave veya Opera tarayıcılarından birinin normal kullanıcı profilini açar. Discord oturumun zaten açıksa yeniden giriş yapmazsın. Tarayıcı profilinin aynı anda iki işlemde açılmaması için kurulumdan önce açık tarayıcı pencerelerini tamamen kapat. Girişten sonra uygulama, bot, intentler, token ve kullanıcı ID otomatik alınır.
+Kurulum bilgisayardaki Brave tarayıcısının normal kullanıcı profilini açar. Otomasyon yalnızca Brave ile destekleniyor; Brave kurulu değilse kurulum onu otomatik yükler. Discord oturumun zaten açıksa yeniden giriş yapmazsın. Tarayıcı profilinin aynı anda iki işlemde açılmaması için kurulumdan önce açık tarayıcı pencerelerini tamamen kapat. Girişten sonra uygulama, bot, intentler, token ve kullanıcı ID otomatik alınır.
 
 ### 5. Başlat
 
@@ -132,7 +132,7 @@ Sonraki çalıştırmalarda yalnızca `BASLAT.bat` dosyasını aç. `KURULUM.bat
 | Node.js yoksa `winget` ile LTS sürümünü kurar | ✅ |
 | npm'in kurulu olduğunu kontrol eder | ✅ |
 | npm paketlerini temiz biçimde yükler | ✅ |
-| Chrome, Brave ve Opera'yı kontrol eder; hiçbiri yoksa Chrome'u kurar | ✅ |
+| Brave'i kontrol eder; kurulu değilse Brave'i kurar | ✅ |
 | Gizli `config.js` dosyasını oluşturur | ✅ |
 | 64 karakterlik şifreleme anahtarı üretir | ✅ |
 | Discord uygulamasını ve botu oluşturur | ✅ |
@@ -152,7 +152,7 @@ Sonraki çalıştırmalarda yalnızca `BASLAT.bat` dosyasını aç. `KURULUM.bat
 
 İlk temiz kurulumda süreç şöyledir:
 
-1. `KURULUM.bat`, bilgisayarındaki normal Chrome/Brave/Opera profilini açar.
+1. `KURULUM.bat`, bilgisayarındaki normal Brave profilini açar.
 2. Discord oturumu yoksa giriş ekranında seni bekler.
 3. Giriş tamamlanınca **Ses AFK Token** uygulamasını oluşturur.
 4. Botu oluşturup Presence, Server Members ve Message Content intentlerini açar.
@@ -324,7 +324,7 @@ git check-ignore config.js
 <details>
 <summary><strong>Discord tarayıcı otomasyonu tamamlanamadı</strong></summary>
 
-- Açılan Chrome, Brave veya Opera penceresini kurulum bitmeden kapatma.
+- Açılan Brave penceresini kurulum bitmeden kapatma.
 - `Tarayıcı şu anda açık` hatası çıkarsa bütün tarayıcı pencerelerini kapat; Görev Yöneticisi'nde arka planda kalan işlemler de kapanınca `.bat` dosyasını tekrar aç.
 - Discord girişini, captcha ve varsa 2FA işlemini açık pencerede tamamla.
 - Kurulum penceresinin en fazla 10 dakika beklediğini unutma.
